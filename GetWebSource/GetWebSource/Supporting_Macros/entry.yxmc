@@ -16,7 +16,7 @@
     </Node>
     <Node ToolID="39">
       <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
-        <Position x="174" y="30" width="59" height="59" />
+        <Position x="162" y="150" width="59" height="59" />
       </GuiSettings>
       <Properties>
         <Configuration />
@@ -29,19 +29,17 @@
     </Node>
     <Node ToolID="40">
       <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
-        <Position x="186" y="210" />
+        <Position x="174" y="330" />
       </GuiSettings>
       <Properties>
         <Configuration>
           <NumRows value="1" />
           <Fields>
             <Field name="web url" />
-            <Field name="web data" />
           </Fields>
           <Data>
             <r>
               <c>123</c>
-              <c>12</c>
             </r>
           </Data>
         </Configuration>
@@ -53,7 +51,6 @@
         <MetaInfo connection="Output">
           <RecordInfo>
             <Field name="web url" source="TextInput:" type="Byte" />
-            <Field name="web data" source="TextInput:" type="Byte" />
           </RecordInfo>
         </MetaInfo>
       </Properties>
@@ -61,7 +58,7 @@
     </Node>
     <Node ToolID="41">
       <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
-        <Position x="186" y="126" width="59" height="59" />
+        <Position x="174" y="246" width="59" height="59" />
       </GuiSettings>
       <Properties>
         <Configuration />
@@ -74,7 +71,7 @@
     </Node>
     <Node ToolID="46">
       <GuiSettings Plugin="AlteryxConnectorGui.Download.Download">
-        <Position x="282" y="210" />
+        <Position x="270" y="330" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -86,7 +83,6 @@
             <NameValues />
             <Fields orderChanged="False">
               <Field name="web url" selected="False" />
-              <Field name="web data" selected="False" />
               <Field name="*Unknown" selected="False" />
             </Fields>
           </Headers>
@@ -96,7 +92,6 @@
             <ComposeNameValues />
             <ComposeFields orderChanged="False">
               <Field name="web url" selected="False" />
-              <Field name="web data" selected="False" />
               <Field name="*Unknown" selected="False" />
             </ComposeFields>
           </Payload>
@@ -114,7 +109,6 @@
         <MetaInfo connection="Output">
           <RecordInfo>
             <Field name="web url" source="TextInput:" type="Byte" />
-            <Field name="web data" source="TextInput:" type="Byte" />
             <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
             <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
           </RecordInfo>
@@ -124,7 +118,7 @@
     </Node>
     <Node ToolID="49">
       <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
-        <Position x="378" y="210" />
+        <Position x="366" y="330" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -245,7 +239,7 @@ column	1</DynamicConfiguration>
           <Questions>
             <Question>
               <Type>TextBox</Type>
-              <Description>輸入欲獲取資料網址</Description>
+              <Description>輸入欲獲取資料網址:</Description>
               <Name>url</Name>
               <ToolId value="39" />
               <Default />

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<AlteryxDocument yxmdVer="2019.3">
+<AlteryxDocument yxmdVer="2022.1">
   <Nodes>
     <Node ToolID="1">
       <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
@@ -14,23 +14,111 @@
         </Annotation>
       </Properties>
     </Node>
-    <Node ToolID="2">
+    <Node ToolID="39">
       <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
-        <Position x="54" y="54" width="59" height="59" />
+        <Position x="162" y="150" width="59" height="59" />
       </GuiSettings>
       <Properties>
         <Configuration />
         <Annotation DisplayMode="0">
-          <Name>files</Name>
-          <AnnotationText>輸入參數</AnnotationText>
-          <DefaultAnnotationText />
+          <Name>url</Name>
+          <DefaultAnnotationText>url</DefaultAnnotationText>
           <Left value="False" />
         </Annotation>
       </Properties>
     </Node>
-    <Node ToolID="4">
+    <Node ToolID="40">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="174" y="330" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="web url" />
+          </Fields>
+          <Data>
+            <r>
+              <c>123</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="web url" source="TextInput:" type="Byte" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="41">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="174" y="246" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="46">
+      <GuiSettings Plugin="AlteryxConnectorGui.Download.Download">
+        <Position x="270" y="330" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <URLField>web url</URLField>
+          <OutputMode>String</OutputMode>
+          <CodePage>65001</CodePage>
+          <EncodeURLs value="True" />
+          <Headers>
+            <NameValues />
+            <Fields orderChanged="False">
+              <Field name="web url" selected="False" />
+              <Field name="*Unknown" selected="False" />
+            </Fields>
+          </Headers>
+          <Payload>
+            <HTTPAction>GET</HTTPAction>
+            <QueryStringBodyMode>Compose</QueryStringBodyMode>
+            <ComposeNameValues />
+            <ComposeFields orderChanged="False">
+              <Field name="web url" selected="False" />
+              <Field name="*Unknown" selected="False" />
+            </ComposeFields>
+          </Payload>
+          <numConnections>2</numConnections>
+          <Timeout>600</Timeout>
+          <EnableRPM value="False" />
+          <Password />
+          <UserName />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="web url" source="TextInput:" type="Byte" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxConnectorEngine.dll" EngineDllEntryPoint="AlteryxDownload" />
+    </Node>
+    <Node ToolID="49">
       <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
-        <Position x="1578" y="306" />
+        <Position x="462" y="330" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -39,517 +127,77 @@
         </Configuration>
         <Annotation DisplayMode="0">
           <Name />
-          <AnnotationText>輸出</AnnotationText>
-          <DefaultAnnotationText />
+          <DefaultAnnotationText>Output</DefaultAnnotationText>
           <Left value="False" />
         </Annotation>
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
     </Node>
-    <Node ToolID="5">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
-        <Position x="66" y="294" />
+    <Node ToolID="50">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+        <Position x="366" y="330" />
       </GuiSettings>
       <Properties>
         <Configuration>
-          <NumRows value="1" />
-          <Fields>
-            <Field name="JSON" />
-          </Fields>
-          <Data>
-            <r>
-              <c>Placeholder</c>
-            </r>
-          </Data>
+          <Field>DownloadData</Field>
+          <RegExExpression value=" " />
+          <CaseInsensitve value="True" />
+          <Method>Match</Method>
+          <Replace expression="">
+            <CopyUnmatched value="True" />
+          </Replace>
+          <ParseSimple>
+            <SplitToRows value="False" />
+            <RootName>DownloadData</RootName>
+            <NumFields value="3" />
+            <ErrorHandling>Warn</ErrorHandling>
+          </ParseSimple>
+          <ParseComplex>
+            <Field field="No Marked Groups Found" type="No Marked Groups Found" size="No Marked Groups Found" />
+          </ParseComplex>
+          <Match>
+            <Field>DownloadData_Matched</Field>
+            <ErrorUnmatched value="False" />
+          </Match>
         </Configuration>
         <Annotation DisplayMode="0">
           <Name />
-          <AnnotationText>維持一列資料</AnnotationText>
           <DefaultAnnotationText />
           <Left value="False" />
         </Annotation>
         <MetaInfo connection="Output">
           <RecordInfo>
-            <Field name="JSON" size="11" source="TextInput:" type="String" />
+            <Field name="web url" source="TextInput:" type="Byte" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+            <Field name="DownloadData_Matched" type="Bool" />
           </RecordInfo>
         </MetaInfo>
       </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
     </Node>
-    <Node ToolID="6">
-      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
-        <Position x="66" y="162" width="59" height="59" />
-      </GuiSettings>
-      <Properties>
-        <Configuration />
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-      </Properties>
-    </Node>
-    <Node ToolID="7">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.JSONParse.JSONParse">
-        <Position x="174" y="294" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <JSON_Field>JSON</JSON_Field>
-          <IncludeInOutput value="False" />
-          <SingleField value="True" />
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>讀取JSON</AnnotationText>
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field name="JSON_Name" size="1073741823" source="JSONParse: " type="V_WString" />
-            <Field name="JSON_ValueString" size="1073741823" source="JSONParse: " type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJSONParse" />
-    </Node>
-    <Node ToolID="8">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.TextToColumns.TextToColumns">
-        <Position x="270" y="294" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <Field>JSON_Name</Field>
-          <ErrorHandling>Last</ErrorHandling>
-          <RootName>
-          </RootName>
-          <Delimeters value="." />
-          <NumFields value="4" />
-          <Flags value="0" />
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>分割欄位</AnnotationText>
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field name="JSON_Name" size="1073741823" source="JSONParse: " type="V_WString" />
-            <Field name="JSON_ValueString" size="1073741823" source="JSONParse: " type="V_WString" />
-            <Field description="TextToColumns: Parsed from JSON_Name" name="1" size="1073741823" source="TextToColumns: Parsed from JSON_Name" type="V_WString" />
-            <Field description="TextToColumns: Parsed from JSON_Name" name="2" size="1073741823" source="TextToColumns: Parsed from JSON_Name" type="V_WString" />
-            <Field description="TextToColumns: Parsed from JSON_Name" name="3" size="1073741823" source="TextToColumns: Parsed from JSON_Name" type="V_WString" />
-            <Field description="TextToColumns: Parsed from JSON_Name" name="4" size="1073741823" source="TextToColumns: Parsed from JSON_Name" type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextToColumns" />
-    </Node>
-    <Node ToolID="9">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="366" y="294" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <OrderChanged value="True" />
-          <CommaDecimal value="False" />
-          <SelectFields>
-            <SelectField field="JSON_Name" selected="False" />
-            <SelectField field="1" selected="True" rename="index" type="V_WString" forced="True" size="1073741823" />
-            <SelectField field="2" selected="True" rename="col1" type="V_WString" forced="True" size="1073741823" />
-            <SelectField field="4" selected="True" rename="col2" type="V_WString" forced="True" size="1073741823" />
-            <SelectField field="JSON_ValueString" selected="True" rename="value" type="V_WString" forced="True" size="1073741823" />
-            <SelectField field="3" selected="False" />
-            <SelectField field="*Unknown" selected="False" />
-          </SelectFields>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>選取必要欄位、設定資料類型</AnnotationText>
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field description="TextToColumns: Parsed from JSON_Name" name="index" size="1073741823" source="TextToColumns: Parsed from JSON_Name" type="V_WString" />
-            <Field description="TextToColumns: Parsed from JSON_Name" name="col1" size="1073741823" source="TextToColumns: Parsed from JSON_Name" type="V_WString" />
-            <Field description="TextToColumns: Parsed from JSON_Name" name="col2" size="1073741823" source="TextToColumns: Parsed from JSON_Name" type="V_WString" />
-            <Field name="value" size="1073741823" source="JSONParse: " type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
-    </Node>
-    <Node ToolID="10">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-        <Position x="498" y="294" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <FormulaFields>
-            <FormulaField expression="[col1]+[col2]" field="header" size="1073741823" type="V_WString" />
-          </FormulaFields>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>產生Header欄位</AnnotationText>
-          <DefaultAnnotationText><![CDATA[header = [col1]+[col2]
-]]></DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field description="TextToColumns: Parsed from JSON_Name" name="index" size="1073741823" source="TextToColumns: Parsed from JSON_Name" type="V_WString" />
-            <Field description="TextToColumns: Parsed from JSON_Name" name="col1" size="1073741823" source="TextToColumns: Parsed from JSON_Name" type="V_WString" />
-            <Field description="TextToColumns: Parsed from JSON_Name" name="col2" size="1073741823" source="TextToColumns: Parsed from JSON_Name" type="V_WString" />
-            <Field name="value" size="1073741823" source="JSONParse: " type="V_WString" />
-            <Field name="header" size="1073741823" source="Formula: [col1]+[col2]" type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
-    </Node>
-    <Node ToolID="11">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="618" y="294" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <OrderChanged value="True" />
-          <CommaDecimal value="False" />
-          <SelectFields>
-            <SelectField field="index" selected="True" type="V_WString" forced="True" size="1073741823" />
-            <SelectField field="header" selected="True" type="V_WString" forced="True" size="1073741823" />
-            <SelectField field="value" selected="True" type="V_WString" forced="True" size="1073741823" />
-            <SelectField field="col1" selected="False" />
-            <SelectField field="col2" selected="False" />
-            <SelectField field="*Unknown" selected="False" />
-          </SelectFields>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>僅選取必要欄位</AnnotationText>
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field description="TextToColumns: Parsed from JSON_Name" name="index" size="1073741823" source="TextToColumns: Parsed from JSON_Name" type="V_WString" />
-            <Field name="header" size="1073741823" source="Formula: [col1]+[col2]" type="V_WString" />
-            <Field name="value" size="1073741823" source="JSONParse: " type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
-    </Node>
-    <Node ToolID="12">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
-        <Position x="750" y="294" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <GroupFields>
-            <Field field="index" />
-          </GroupFields>
-          <HeaderField field="header" />
-          <DataField field="value" />
-          <Methods>
-            <Method method="Concat" />
-            <Separator>,</Separator>
-            <FieldSize value="1073741823" />
-          </Methods>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>轉置資料</AnnotationText>
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field description="TextToColumns: Parsed from JSON_Name" name="index" size="1073741823" source="CrossTab:Group:Concat:" type="V_WString" />
-            <Field name="columnsname" size="1073741823" source="CrossTab:Header:header:columnsname:Concat:" type="V_WString" />
-            <Field name="columnspos" size="1073741823" source="CrossTab:Header:header:columnspos:Concat:" type="V_WString" />
-            <Field name="firstrow" size="1073741823" source="CrossTab:Header:header:firstrow:Concat:" type="V_WString" />
-            <Field name="path" size="1073741823" source="CrossTab:Header:header:path:Concat:" type="V_WString" />
-            <Field name="sheet" size="1073741823" source="CrossTab:Header:header:sheet:Concat:" type="V_WString" />
-          </RecordInfo>
-          <SortInfo>
-            <Field field="index" order="Asc" />
-          </SortInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxCrossTab" />
-    </Node>
-    <Node ToolID="18">
-      <GuiSettings>
-        <Position x="1230" y="306" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <Value name="Input.Setting Input"><![CDATA[檔案路徑=檔案路徑
-工作表=工作表
-起始列=起始列
-選取欄位=選取欄位
-欄位名稱=欄位名稱
-]]></Value>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name>ReadXLSX_MakeSettings</Name>
-          <AnnotationText>檢查並產生設定檔</AnnotationText>
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Setting Output">
-          <RecordInfo>
-            <Field name="FullPath" size="1073741823" source="Formula: [檔案路徑]+&quot;|&quot;+[工作表]" type="V_WString" />
-            <Field name="FirstRow" source="CrossTab:Header:header:firstrow:Concat:" type="Int64" />
-            <Field name="FieldPos" size="1073741823" source="Summarize: Concat - FieldPos" type="V_WString" />
-            <Field name="FieldNames" size="1073741823" source="Summarize: Concat - FieldNames" type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings Macro="XlsxReader\Supporting_Macros\ReadXLSX_MakeSettings.yxmc" />
-    </Node>
-    <Node ToolID="19">
-      <GuiSettings>
-        <Position x="1350" y="306" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <Value name="ControlParams"><![CDATA[Control Parameter (2)=FullPath
-Control Parameter (3)=FirstRow
-Control Parameter (4)=FieldPos
-Control Parameter (5)=FieldNames
-]]></Value>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name>ensure_order</Name>
-          <AnnotationText>確認欄位名稱及位置順序相同</AnnotationText>
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field name="FullPath" size="1073741823" source="TextInput: (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro)" type="V_WString" />
-            <Field name="FirstRow" source="TextInput: (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro)" type="Int64" />
-            <Field name="FieldPos" size="1073741823" source="Summarize: Concat - FieldPos (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro)" type="V_WString" />
-            <Field name="FieldNames" size="1073741823" source="Summarize: Concat - FieldNames (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro) (BatchMacro)" type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings Macro="XlsxReader\Supporting_Macros\ensure_order.yxmc" />
-    </Node>
-    <Node ToolID="20">
-      <GuiSettings>
-        <Position x="1470" y="306" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <Value name="ControlParams"><![CDATA[取得路徑=FullPath
-取得起始第一筆資料於第N列=FirstRow
-取得欄位號碼=FieldPos
-取得欄位名稱=FieldNames
-]]></Value>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name>ReadXLSX</Name>
-          <AnnotationText>讀取XLSX</AnnotationText>
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="輸出">
-          <RecordInfo>
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings Macro="XlsxReader\Supporting_Macros\ReadXLSX.yxmc" />
-    </Node>
-    <Node ToolID="27">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="1014" y="306" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <OrderChanged value="True" />
-          <CommaDecimal value="False" />
-          <SelectFields>
-            <SelectField field="path" selected="True" rename="檔案路徑" type="V_WString" forced="True" size="1073741823" />
-            <SelectField field="sheet" selected="True" rename="工作表" type="V_WString" forced="True" size="1073741823" />
-            <SelectField field="firstrow" selected="True" rename="起始列" type="Int64" forced="True" size="8" />
-            <SelectField field="columnspos" selected="True" rename="選取欄位" type="V_WString" forced="True" size="1073741823" />
-            <SelectField field="columnsname" selected="True" rename="欄位名稱" type="V_WString" forced="True" size="1073741823" />
-            <SelectField field="index" selected="False" />
-            <SelectField field="*Unknown" selected="False" />
-          </SelectFields>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>設定資料類型</AnnotationText>
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field name="檔案路徑" size="1073741823" source="CrossTab:Header:header:path:Concat:" type="V_WString" />
-            <Field name="工作表" size="1073741823" source="CrossTab:Header:header:sheet:Concat:" type="V_WString" />
-            <Field name="起始列" source="CrossTab:Header:header:firstrow:Concat:" type="Int64" />
-            <Field name="選取欄位" size="1073741823" source="CrossTab:Header:header:columnspos:Concat:" type="V_WString" />
-            <Field name="欄位名稱" size="1073741823" source="CrossTab:Header:header:columnsname:Concat:" type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
-    </Node>
-    <Node ToolID="28">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-        <Position x="858" y="294" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <Expression><![CDATA[IsEmpty([index]) ]]></Expression>
-          <Mode>Custom</Mode>
-          <Simple>
-            <Operator>=</Operator>
-            <Field>
-            </Field>
-            <Operands>
-              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
-              <DateType>fixed</DateType>
-              <PeriodDate>2021-09-05 22:48:21</PeriodDate>
-              <PeriodType>
-              </PeriodType>
-              <PeriodCount>0</PeriodCount>
-              <Operand>
-              </Operand>
-              <StartDate>2021-09-05 22:48:21</StartDate>
-              <EndDate>2021-09-05 22:48:21</EndDate>
-            </Operands>
-          </Simple>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>選取全部不為空欄位</AnnotationText>
-          <DefaultAnnotationText><![CDATA[IsEmpty([index]) ]]></DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="True">
-          <RecordInfo>
-            <Field description="TextToColumns: Parsed from JSON_Name" name="index" size="1073741823" source="CrossTab:Group:Concat:" type="V_WString" />
-            <Field name="columnsname" size="1073741823" source="CrossTab:Header:header:columnsname:Concat:" type="V_WString" />
-            <Field name="columnspos" size="1073741823" source="CrossTab:Header:header:columnspos:Concat:" type="V_WString" />
-            <Field name="firstrow" size="1073741823" source="CrossTab:Header:header:firstrow:Concat:" type="V_WString" />
-            <Field name="path" size="1073741823" source="CrossTab:Header:header:path:Concat:" type="V_WString" />
-            <Field name="sheet" size="1073741823" source="CrossTab:Header:header:sheet:Concat:" type="V_WString" />
-          </RecordInfo>
-          <SortInfo>
-            <Field field="index" order="Asc" />
-          </SortInfo>
-        </MetaInfo>
-        <MetaInfo connection="False">
-          <RecordInfo>
-            <Field description="TextToColumns: Parsed from JSON_Name" name="index" size="1073741823" source="CrossTab:Group:Concat:" type="V_WString" />
-            <Field name="columnsname" size="1073741823" source="CrossTab:Header:header:columnsname:Concat:" type="V_WString" />
-            <Field name="columnspos" size="1073741823" source="CrossTab:Header:header:columnspos:Concat:" type="V_WString" />
-            <Field name="firstrow" size="1073741823" source="CrossTab:Header:header:firstrow:Concat:" type="V_WString" />
-            <Field name="path" size="1073741823" source="CrossTab:Header:header:path:Concat:" type="V_WString" />
-            <Field name="sheet" size="1073741823" source="CrossTab:Header:header:sheet:Concat:" type="V_WString" />
-          </RecordInfo>
-          <SortInfo>
-            <Field field="index" order="Asc" />
-          </SortInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
-    </Node>
-    <Node ToolID="32">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.Test.Test">
-        <Position x="1134" y="414" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <Tests>
-            <Test>
-              <Name>無設定，請設定後再次執行。</Name>
-              <Connection>#1</Connection>
-              <Type>ExpAll</Type>
-              <Value>[Count] &gt; 0</Value>
-            </Test>
-          </Tests>
-          <DontReportSubsequent value="False" />
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>檢查是否有資料</AnnotationText>
-          <DefaultAnnotationText>無設定，請設定後再次執行。</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTest" />
-    </Node>
-    <Node ToolID="33">
-      <GuiSettings>
-        <Position x="1014" y="414" />
-      </GuiSettings>
-      <Properties>
-        <Configuration />
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>計算列數</AnnotationText>
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output9">
-          <RecordInfo>
-            <Field name="Count" source="(Multiple Sources)" type="Int64" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings Macro="CountRecords.yxmc" />
-    </Node>
-    <Node ToolID="34">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-        <Position x="1110" y="306" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <FormulaFields>
-            <FormulaField expression="IF IsEmpty(FileGetDir([檔案路徑])) THEN &#xA;FileAddPaths([#1], [檔案路徑])&#xA;ELSE &#xA;[檔案路徑]&#xA;ENDIF" field="檔案路徑" size="1073741823" type="V_WString" />
-          </FormulaFields>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>如果只有檔案名稱，則自動加上當前路徑</AnnotationText>
-          <DefaultAnnotationText>檔案路徑 = IF IsEmpty(FileGetDir([檔案路徑])) THEN 
-FileAddPaths([#1], [檔案路徑])
-ELSE 
-[檔案...</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field name="檔案路徑" size="1073741823" source="Formula: IF IsEmpty(FileGetDir([檔案路徑])) THEN &#xA;FileAddPaths([#1], [檔案路徑])&#xA;ELSE &#xA;[檔案路徑]&#xA;ENDIF" type="V_WString" />
-            <Field name="工作表" size="1073741823" source="CrossTab:Header:header:sheet:Concat:" type="V_WString" />
-            <Field name="起始列" source="CrossTab:Header:header:firstrow:Concat:" type="Int64" />
-            <Field name="選取欄位" size="1073741823" source="CrossTab:Header:header:columnspos:Concat:" type="V_WString" />
-            <Field name="欄位名稱" size="1073741823" source="CrossTab:Header:header:columnsname:Concat:" type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
-    </Node>
-    <Node ToolID="35">
+    <Node ToolID="53">
       <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
-        <Position x="1098" y="174" width="59" height="59" />
+        <Position x="366" y="150" width="59" height="59" />
       </GuiSettings>
       <Properties>
         <Configuration />
         <Annotation DisplayMode="0">
-          <Name>workdir</Name>
-          <AnnotationText>當前路徑</AnnotationText>
-          <DefaultAnnotationText />
+          <Name />
+          <DefaultAnnotationText>Text Box (53)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="54">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="378" y="234" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
           <Left value="False" />
         </Annotation>
       </Properties>
@@ -557,76 +205,32 @@ ELSE
   </Nodes>
   <Connections>
     <Connection name="#1">
-      <Origin ToolID="2" Connection="Question" />
-      <Destination ToolID="6" Connection="Question" />
+      <Origin ToolID="39" Connection="Question" />
+      <Destination ToolID="41" Connection="Question" />
     </Connection>
     <Connection>
-      <Origin ToolID="5" Connection="Output" />
-      <Destination ToolID="7" Connection="Input" />
+      <Origin ToolID="40" Connection="Output" />
+      <Destination ToolID="46" Connection="Input" />
     </Connection>
     <Connection name="#2">
-      <Origin ToolID="6" Connection="Action" />
-      <Destination ToolID="5" Connection="Action" />
+      <Origin ToolID="41" Connection="Action" />
+      <Destination ToolID="40" Connection="Action" />
     </Connection>
     <Connection>
-      <Origin ToolID="7" Connection="Output" />
-      <Destination ToolID="8" Connection="Input" />
+      <Origin ToolID="46" Connection="Output" />
+      <Destination ToolID="50" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="54" Connection="Action" />
+      <Destination ToolID="50" Connection="Action" />
     </Connection>
     <Connection>
-      <Origin ToolID="8" Connection="Output" />
-      <Destination ToolID="9" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="9" Connection="Output" />
-      <Destination ToolID="10" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="10" Connection="Output" />
-      <Destination ToolID="11" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="11" Connection="Output" />
-      <Destination ToolID="12" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="12" Connection="Output" />
-      <Destination ToolID="28" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="18" Connection="Setting Output" />
-      <Destination ToolID="19" Connection="Control" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="19" Connection="Output" />
-      <Destination ToolID="20" Connection="Control" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="20" Connection="輸出" />
-      <Destination ToolID="4" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="27" Connection="Output" />
-      <Destination ToolID="34" Connection="Input" />
+      <Origin ToolID="50" Connection="Output" />
+      <Destination ToolID="49" Connection="Input" />
     </Connection>
     <Connection name="#1">
-      <Origin ToolID="35" Connection="Question" />
-      <Destination ToolID="34" Connection="Question" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="28" Connection="False" />
-      <Destination ToolID="33" Connection="Input8" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="28" Connection="False" />
-      <Destination ToolID="27" Connection="Input" />
-    </Connection>
-    <Connection name="#1">
-      <Origin ToolID="33" Connection="Output9" />
-      <Destination ToolID="32" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="34" Connection="Output" />
-      <Destination ToolID="18" Connection="Setting Input" />
+      <Origin ToolID="53" Connection="Question" />
+      <Destination ToolID="54" Connection="Question" />
     </Connection>
   </Connections>
   <Properties>
@@ -639,6 +243,7 @@ ELSE
     <CancelOnError value="False" />
     <DisableBrowse value="False" />
     <EnablePerformanceProfiling value="False" />
+    <PredictiveToolsCodePage value="1252" />
     <DisableAllOutput value="False" />
     <ShowAllMacroMessages value="False" />
     <ShowConnectionStatusIsOn value="True" />
@@ -648,19 +253,19 @@ ELSE
     <Constants>
       <Constant>
         <Namespace>Question</Namespace>
-        <Name>files</Name>
+        <Name>url</Name>
         <Value />
         <IsNumeric value="False" />
       </Constant>
       <Constant>
         <Namespace>Question</Namespace>
-        <Name>Macro Output (4)</Name>
+        <Name>Macro Output (49)</Name>
         <Value />
         <IsNumeric value="False" />
       </Constant>
       <Constant>
         <Namespace>Question</Namespace>
-        <Name>workdir</Name>
+        <Name>Text Box (53)</Name>
         <Value />
         <IsNumeric value="False" />
       </Constant>
@@ -682,6 +287,11 @@ ELSE
         <Description />
         <File />
       </Example>
+      <WorkflowId value="c009758b-b23e-44f4-aca0-b5fefbc4ebd9" />
+      <Telemetry>
+        <PreviousWorkflowId value="8d2ee046-b0f0-448a-af6c-f99f2ccf75c2" />
+        <OriginWorkflowId value="8d2ee046-b0f0-448a-af6c-f99f2ccf75c2" />
+      </Telemetry>
     </MetaInfo>
     <Events>
       <Enabled value="False" />
@@ -695,14 +305,23 @@ ELSE
             <Action>
               <Type>Dynamic</Type>
               <Description />
-              <ToolId value="6" />
+              <ToolId value="41" />
               <Expression>{{INPUT}}</Expression>
-              <Destination>5/Data/r[1]/c[1]</Destination>
+              <Destination>40/Data/r[1]/c[1]</Destination>
               <Mapping>Update Cell</Mapping>
               <Mode>Expression</Mode>
               <DynamicConfiguration>row	1
 column	1</DynamicConfiguration>
               <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="54" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>50/RegExExpression/@value</Destination>
             </Action>
           </True>
         </NoCondition>
@@ -716,9 +335,9 @@ column	1</DynamicConfiguration>
           <Questions>
             <Question>
               <Type>TextBox</Type>
-              <Description>files</Description>
-              <Name>files</Name>
-              <ToolId value="2" />
+              <Description>輸入欲獲取資料網址:</Description>
+              <Name>url</Name>
+              <ToolId value="39" />
               <Default />
               <Password value="False" />
               <Multiline value="False" />
@@ -726,15 +345,15 @@ column	1</DynamicConfiguration>
             </Question>
             <Question>
               <Type>MacroOutput</Type>
-              <Description>Macro Output (4)</Description>
-              <Name>Macro Output (4)</Name>
-              <ToolId value="4" />
+              <Description />
+              <Name>Macro Output (49)</Name>
+              <ToolId value="49" />
             </Question>
             <Question>
               <Type>TextBox</Type>
-              <Description>workdir</Description>
-              <Name>workdir</Name>
-              <ToolId value="35" />
+              <Description>輸入正規化規則(擷取指定資料時才需輸入):</Description>
+              <Name>Text Box (53)</Name>
+              <ToolId value="53" />
               <Default />
               <Password value="False" />
               <Multiline value="False" />
@@ -746,18 +365,14 @@ column	1</DynamicConfiguration>
       <ModuleType>Macro</ModuleType>
       <MacroCustomHelp value="False" />
       <MacroDynamicOutputFields value="True" />
-      <MacroImage>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</MacroImage>
+      <MacroImage>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</MacroImage>
       <MacroInputs />
       <MacroOutputs />
       <Wiz_CustomHelp value="False" />
       <Wiz_CustomGraphic value="False" />
       <Wiz_ShowOutput value="True" />
       <Wiz_OpenOutputTools>
-        <Tool ToolId="4" Selected="True" />
-        <Tool ToolId="18" Selected="True" />
-        <Tool ToolId="19" Selected="True" />
-        <Tool ToolId="20" Selected="True" />
-        <Tool ToolId="33" Selected="True" />
+        <Tool ToolId="49" Selected="True" />
       </Wiz_OpenOutputTools>
       <Wiz_OutputMessage />
       <Wiz_NoOutputFilesMessage />
