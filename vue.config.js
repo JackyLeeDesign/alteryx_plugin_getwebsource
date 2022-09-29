@@ -4,7 +4,8 @@ const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    outputDir: "XlsxReader/XlsxReader",
+    publicPath:".",
+    outputDir: "GetWebSource/GetWebSource",
     filenameHashing: false,
     css: {
         extract: false,

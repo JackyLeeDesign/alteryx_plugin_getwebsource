@@ -13,7 +13,7 @@ function run(cmd){
 // Paths
 const alteryx_path     = 'C:\\Program Files\\Alteryx\\bin\\AlteryxEngineCmd.exe'
 const source_path      = path.join(__dirname,"alteryx_src","Supporting_Macros")
-const dest_path        = path.join(__dirname,"XlsxReader","XlsxReader","Supporting_Macros") 
+const dest_path        = path.join(__dirname,"GetWebSource","GetWebSource","Supporting_Macros") 
  
 var cmds   = []
 var macros = fs.readdirSync(source_path).filter(Element=>{ return path.extname(Element)== ".yxmc" })

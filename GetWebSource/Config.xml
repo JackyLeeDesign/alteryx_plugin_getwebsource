@@ -2,12 +2,12 @@
 <AlteryxJavaScriptPlugin>
   <Properties>
     <MetaInfo>
-      <Name>Excel讀取</Name>
-      <Description>一次讀取多個Excel(.Xlsx)檔案，亦可指定讀取Excel檔案多個Sheet。</Description>
+      <Name>獲取指定網頁資料</Name>
+      <Description>根據指定的url網址，獲取該網頁資料。</Description>
       <ToolVersion>1.0.0</ToolVersion>
-      <CategoryName>PwC Data Tools</CategoryName>
+      <CategoryName>PwC DEV Tools Test</CategoryName>
       <Author>Assurance Innovation and Transformation</Author>
-      <Icon>XlsxReader/icon.png</Icon>
+      <Icon>GetWebSource/icon.png</Icon>
     </MetaInfo>
   </Properties>
 </AlteryxJavaScriptPlugin>

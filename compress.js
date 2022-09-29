@@ -2,7 +2,7 @@ const fs = require('fs');
 const archiver = require('archiver');
 const path = require('path');
 
-const output = fs.createWriteStream(path.join(__dirname,"XlsxReader","XlsxReader.yxi"))
+const output = fs.createWriteStream(path.join(__dirname,"GetWebSource","GetWebSource.yxi"))
 const archive = archiver('zip', {
     zlib: { level: 9 } // Sets the compression level.
   });
@@ -41,7 +41,7 @@ archive.on('error', function(err) {
 archive.pipe(output);
 
 //Add files and directory into archive
-archive.directory(path.join(__dirname,"XlsxReader","XlsxReader"),"XlsxReader")
-archive.glob('Config.xml', {cwd:path.join(__dirname,"XlsxReader")});
+archive.directory(path.join(__dirname,"GetWebSource","GetWebSource"),"GetWebSource")
+archive.glob('Config.xml', {cwd:path.join(__dirname,"GetWebSource")});
 
 archive.finalize();

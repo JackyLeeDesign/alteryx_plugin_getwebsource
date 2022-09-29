@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
 <AlteryxJavaScriptPlugin>
-  <EngineSettings EngineDllEntryPoint="XlsxReader\Supporting_Macros\entry.yxmc" EngineDll="Macro" SDKVersion="10.1" />
+  <EngineSettings EngineDllEntryPoint="GetWebSource\Supporting_Macros\entry.yxmc" EngineDll="Macro" SDKVersion="10.1" />
   
   <GuiSettings Help="" Html="index.html" Icon="icon.png" SDKVersion="10.1">
-    <!--
-    <InputConnections>
+    <!-- <InputConnections>
       <Connection Name="Input" AllowMultiple="False" Optional="False" Type="Connection" Label="I"/>
-    </InputConnections>
-    -->
+    </InputConnections> -->
     <OutputConnections>
       <Connection Name="Output" AllowMultiple="False" Optional="False" Type="Connection" Label="O"/>
     </OutputConnections>
@@ -15,9 +13,9 @@
 
   <Properties>
     <MetaInfo>
-      <Name>Excel讀取</Name>
-      <Description>一次讀取多個Excel(.Xlsx)檔案，亦可指定讀取Excel檔案多個Sheet。</Description>
-      <CategoryName>PwC Data Tools</CategoryName>
+      <Name>獲取指定網頁資料</Name>
+      <Description>根據指定的url網址，獲取該網頁資料。</Description>
+      <CategoryName>PwC DEV Tools Test</CategoryName>
       <SearchTags>pwc</SearchTags>
       <ToolVersion>1.0.0</ToolVersion>
       <Author>​Assurance Innovation and Transformation</Author>

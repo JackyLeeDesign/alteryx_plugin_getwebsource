@@ -16,7 +16,7 @@
     </Node>
     <Node ToolID="39">
       <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
-        <Position x="162" y="150" width="59" height="59" />
+        <Position x="174" y="30" width="59" height="59" />
       </GuiSettings>
       <Properties>
         <Configuration />
@@ -29,17 +29,19 @@
     </Node>
     <Node ToolID="40">
       <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
-        <Position x="174" y="330" />
+        <Position x="186" y="210" />
       </GuiSettings>
       <Properties>
         <Configuration>
           <NumRows value="1" />
           <Fields>
             <Field name="web url" />
+            <Field name="web data" />
           </Fields>
           <Data>
             <r>
               <c>123</c>
+              <c>12</c>
             </r>
           </Data>
         </Configuration>
@@ -51,6 +53,7 @@
         <MetaInfo connection="Output">
           <RecordInfo>
             <Field name="web url" source="TextInput:" type="Byte" />
+            <Field name="web data" source="TextInput:" type="Byte" />
           </RecordInfo>
         </MetaInfo>
       </Properties>
@@ -58,7 +61,7 @@
     </Node>
     <Node ToolID="41">
       <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
-        <Position x="174" y="246" width="59" height="59" />
+        <Position x="186" y="126" width="59" height="59" />
       </GuiSettings>
       <Properties>
         <Configuration />
@@ -71,7 +74,7 @@
     </Node>
     <Node ToolID="46">
       <GuiSettings Plugin="AlteryxConnectorGui.Download.Download">
-        <Position x="270" y="330" />
+        <Position x="282" y="210" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -83,6 +86,7 @@
             <NameValues />
             <Fields orderChanged="False">
               <Field name="web url" selected="False" />
+              <Field name="web data" selected="False" />
               <Field name="*Unknown" selected="False" />
             </Fields>
           </Headers>
@@ -92,6 +96,7 @@
             <ComposeNameValues />
             <ComposeFields orderChanged="False">
               <Field name="web url" selected="False" />
+              <Field name="web data" selected="False" />
               <Field name="*Unknown" selected="False" />
             </ComposeFields>
           </Payload>
@@ -109,6 +114,7 @@
         <MetaInfo connection="Output">
           <RecordInfo>
             <Field name="web url" source="TextInput:" type="Byte" />
+            <Field name="web data" source="TextInput:" type="Byte" />
             <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
             <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
           </RecordInfo>
@@ -118,7 +124,7 @@
     </Node>
     <Node ToolID="49">
       <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
-        <Position x="462" y="330" />
+        <Position x="378" y="210" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -132,75 +138,6 @@
         </Annotation>
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
-    </Node>
-    <Node ToolID="50">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
-        <Position x="366" y="330" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <Field>DownloadData</Field>
-          <RegExExpression value=" " />
-          <CaseInsensitve value="True" />
-          <Method>Match</Method>
-          <Replace expression="">
-            <CopyUnmatched value="True" />
-          </Replace>
-          <ParseSimple>
-            <SplitToRows value="False" />
-            <RootName>DownloadData</RootName>
-            <NumFields value="3" />
-            <ErrorHandling>Warn</ErrorHandling>
-          </ParseSimple>
-          <ParseComplex>
-            <Field field="No Marked Groups Found" type="No Marked Groups Found" size="No Marked Groups Found" />
-          </ParseComplex>
-          <Match>
-            <Field>DownloadData_Matched</Field>
-            <ErrorUnmatched value="False" />
-          </Match>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field name="web url" source="TextInput:" type="Byte" />
-            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
-            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
-            <Field name="DownloadData_Matched" type="Bool" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
-    </Node>
-    <Node ToolID="53">
-      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
-        <Position x="366" y="150" width="59" height="59" />
-      </GuiSettings>
-      <Properties>
-        <Configuration />
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText>Text Box (53)</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-      </Properties>
-    </Node>
-    <Node ToolID="54">
-      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
-        <Position x="378" y="234" width="59" height="59" />
-      </GuiSettings>
-      <Properties>
-        <Configuration />
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-      </Properties>
     </Node>
   </Nodes>
   <Connections>
@@ -218,19 +155,7 @@
     </Connection>
     <Connection>
       <Origin ToolID="46" Connection="Output" />
-      <Destination ToolID="50" Connection="Input" />
-    </Connection>
-    <Connection name="#2">
-      <Origin ToolID="54" Connection="Action" />
-      <Destination ToolID="50" Connection="Action" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="50" Connection="Output" />
       <Destination ToolID="49" Connection="Input" />
-    </Connection>
-    <Connection name="#1">
-      <Origin ToolID="53" Connection="Question" />
-      <Destination ToolID="54" Connection="Question" />
     </Connection>
   </Connections>
   <Properties>
@@ -260,12 +185,6 @@
       <Constant>
         <Namespace>Question</Namespace>
         <Name>Macro Output (49)</Name>
-        <Value />
-        <IsNumeric value="False" />
-      </Constant>
-      <Constant>
-        <Namespace>Question</Namespace>
-        <Name>Text Box (53)</Name>
         <Value />
         <IsNumeric value="False" />
       </Constant>
@@ -314,15 +233,6 @@
 column	1</DynamicConfiguration>
               <DefaultConfiguration value="True" />
             </Action>
-            <Action>
-              <Type>UpdateValue</Type>
-              <Description />
-              <ToolId value="54" />
-              <Mode>Simple</Mode>
-              <Variable />
-              <Replace value="False" />
-              <Destination>50/RegExExpression/@value</Destination>
-            </Action>
           </True>
         </NoCondition>
       </Actions>
@@ -335,7 +245,7 @@ column	1</DynamicConfiguration>
           <Questions>
             <Question>
               <Type>TextBox</Type>
-              <Description>輸入欲獲取資料網址:</Description>
+              <Description>輸入欲獲取資料網址</Description>
               <Name>url</Name>
               <ToolId value="39" />
               <Default />
@@ -348,16 +258,6 @@ column	1</DynamicConfiguration>
               <Description />
               <Name>Macro Output (49)</Name>
               <ToolId value="49" />
-            </Question>
-            <Question>
-              <Type>TextBox</Type>
-              <Description>輸入正規化規則(擷取指定資料時才需輸入):</Description>
-              <Name>Text Box (53)</Name>
-              <ToolId value="53" />
-              <Default />
-              <Password value="False" />
-              <Multiline value="False" />
-              <Hidden value="False" />
             </Question>
           </Questions>
         </Question>

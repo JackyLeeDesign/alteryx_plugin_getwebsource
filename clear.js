@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const dir       = path.join(__dirname,"XlsxReader")
+const dir       = path.join(__dirname,"GetWebSource")
 const to_delete = fs.readdirSync(dir).filter(item => item !== "Config.xml")
 
 console.log("Item to Delete...",to_delete)
